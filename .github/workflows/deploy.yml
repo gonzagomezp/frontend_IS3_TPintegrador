@@ -42,7 +42,7 @@ jobs:
       run: docker push gcr.io/gonzagomezp1/frontend:latest
 
     - name: Set up Google Cloud SDK
-      uses: google-github-actions/setup-gcloud@master
+      uses: google-github-actions/setup-gcloud@v1
       with:
         version: 'latest'
         service_account_key: ${{ secrets.GCP_KEY }}
