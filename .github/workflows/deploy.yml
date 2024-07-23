@@ -40,10 +40,10 @@ jobs:
         project_id: frontend-430223
 
     - name: Authenticate Docker to Google Container Registry
-    run: |
-      echo "${{ secrets.GCP_KEY }}" > ${HOME}/gcp-key.json
-      gcloud auth activate-service-account --key-file=${HOME}/gcp-key.json
-      gcloud auth configure-docker
+      run: |
+        echo "${{ secrets.GCP_KEY }}" > ${HOME}/gcp-key.json
+        gcloud auth activate-service-account --key-file=${HOME}/gcp-key.json
+        gcloud auth configure-docker
 
 
     - name: Tag Docker image for GCR
