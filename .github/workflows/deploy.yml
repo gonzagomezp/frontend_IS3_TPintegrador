@@ -36,25 +36,38 @@ jobs:
       uses: google-github-actions/setup-gcloud@v1
       with:
         version: 'latest'
-        service_account_key: ${{ secrets.GCP_KEY }}
-        project_id: frontend-430223
+        project_id: ${{ secrets.GCP_PROJECT_ID }}
 
     - name: Debug Secret Key
       run: |
-        echo "${{ secrets.GCP_KEY }}" | head -c 100
+        echo "{
+          \"type\": \"${{ secrets.GCP_TYPE }}\",
+          \"project_id\": \"${{ secrets.GCP_PROJECT_ID }}\",
+          \"private_key_id\": \"${{ secrets.GCP_PRIVATE_KEY_ID }}\",
+          \"private_key\": \"${{ secrets.GCP_PRIVATE_KEY }}\",
+          \"client_email\": \"${{ secrets.GCP_CLIENT_EMAIL }}\",
+          \"client_id\": \"${{ secrets.GCP_CLIENT_ID }}\"
+        }" | head -c 100
 
     - name: Authenticate Docker to Google Container Registry
       run: |
-        printf '%s\n' "${{ secrets.GCP_KEY }}" > /tmp/gcp-key.json
+        echo "{
+          \"type\": \"${{ secrets.GCP_TYPE }}\",
+          \"project_id\": \"${{ secrets.GCP_PROJECT_ID }}\",
+          \"private_key_id\": \"${{ secrets.GCP_PRIVATE_KEY_ID }}\",
+          \"private_key\": \"${{ secrets.GCP_PRIVATE_KEY }}\",
+          \"client_email\": \"${{ secrets.GCP_CLIENT_EMAIL }}\",
+          \"client_id\": \"${{ secrets.GCP_CLIENT_ID }}\"
+        }" > /tmp/gcp-key.json
         cat /tmp/gcp-key.json | head -c 100
         gcloud auth activate-service-account --key-file=/tmp/gcp-key.json
         gcloud auth configure-docker
 
     - name: Tag Docker image for GCR
-      run: docker tag gonzagomezp1/frontend:latest gcr.io/gonzagomezp1/frontend:latest
+      run: docker tag gonzagomezp1/frontend:latest gcr.io/${{ secrets.GCP_PROJECT_ID }}/frontend:latest
 
     - name: Push Docker image to GCR
-      run: docker push gcr.io/gonzagomezp1/frontend:latest
+      run: docker push gcr.io/${{ secrets.GCP_PROJECT_ID }}/frontend:latest
 
     - name: Configure kubectl
       run: |
