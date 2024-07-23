@@ -36,26 +36,13 @@ jobs:
       uses: google-github-actions/setup-gcloud@v1
       with:
         version: 'latest'
-        service_account_key: ${{ secrets.GCP_KEY }}
+        service_account_key: ${{ secrets.GCP_SA_KEY }}
         project_id: frontend-430223
 
-    - name: Authenticate Docker to Google Container Registry
+    - name: Deploy to Cloud Run
       run: |
-        echo "${{ secrets.GCP_KEY }}" | tr -d '\r' | sed 's/\\n/\n/g' > ${HOME}/gcp-key.json
-        gcloud auth activate-service-account --key-file=${HOME}/gcp-key.json
-        gcloud auth configure-docker
-
-
-
-    - name: Tag Docker image for GCR
-      run: docker tag gonzagomezp1/frontend:latest gcr.io/frontend-430223/frontend:latest
-
-    - name: Push Docker image to GCR
-      run: docker push gcr.io/frontend-430223/frontend:latest
-
-    - name: Configure kubectl
-      run: |
-        gcloud container clusters get-credentials ingenieria-de-software --zone southamerica-west1
-
-    - name: Deploy to GKE
-      run: kubectl apply -f deployment.yaml
+        gcloud config set run/region us-central1
+        gcloud run deploy frontend-service \
+          --image gonzagomezp1/frontend:latest \
+          --platform managed \
+          --quiet
