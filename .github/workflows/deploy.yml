@@ -41,9 +41,10 @@ jobs:
 
     - name: Authenticate Docker to Google Container Registry
       run: |
-        echo "${{ secrets.GCP_KEY }}" > ${HOME}/gcp-key.json
+        echo "${{ secrets.GCP_KEY }}" | tr -d '\r' | sed 's/\\n/\n/g' > ${HOME}/gcp-key.json
         gcloud auth activate-service-account --key-file=${HOME}/gcp-key.json
         gcloud auth configure-docker
+
 
 
     - name: Tag Docker image for GCR
