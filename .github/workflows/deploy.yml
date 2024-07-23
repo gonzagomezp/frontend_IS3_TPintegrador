@@ -32,21 +32,24 @@ jobs:
     - name: Logout from Docker Hub
       run: docker logout
 
-    - name: Log in to Google Container Registry
-      run: echo "${{ secrets.GCP_KEY }}" | docker login -u _json_key --password-stdin https://gcr.io
-
-    - name: Tag Docker image for GCR
-      run: docker tag gonzagomezp1/frontend:latest gcr.io/gonzagomezp1/frontend:latest
-
-    - name: Push Docker image to GCR
-      run: docker push gcr.io/gonzagomezp1/frontend:latest
-
     - name: Set up Google Cloud SDK
       uses: google-github-actions/setup-gcloud@v1
       with:
         version: 'latest'
         service_account_key: ${{ secrets.GCP_KEY }}
         project_id: frontend-430223
+
+    - name: Authenticate Docker to Google Container Registry
+      run: |
+        echo "${{ secrets.GCP_KEY }}" > /tmp/gcp-key.json
+        gcloud auth activate-service-account --key-file=/tmp/gcp-key.json
+        gcloud auth configure-docker
+
+    - name: Tag Docker image for GCR
+      run: docker tag gonzagomezp1/frontend:latest gcr.io/gonzagomezp1/frontend:latest
+
+    - name: Push Docker image to GCR
+      run: docker push gcr.io/gonzagomezp1/frontend:latest
 
     - name: Configure kubectl
       run: |
