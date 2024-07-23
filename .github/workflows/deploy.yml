@@ -39,9 +39,14 @@ jobs:
         service_account_key: ${{ secrets.GCP_KEY }}
         project_id: frontend-430223
 
+    - name: Debug Secret Key
+      run: |
+        echo "${{ secrets.GCP_KEY }}" | head -c 100
+
     - name: Authenticate Docker to Google Container Registry
       run: |
         echo "${{ secrets.GCP_KEY }}" > /tmp/gcp-key.json
+        cat /tmp/gcp-key.json | head -c 100
         gcloud auth activate-service-account --key-file=/tmp/gcp-key.json
         gcloud auth configure-docker
 
