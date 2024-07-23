@@ -50,4 +50,3 @@ jobs:
           --image gonzagomezp1/frontend:latest \
           --platform managed \
           --quiet
-
