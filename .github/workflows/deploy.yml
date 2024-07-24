@@ -46,7 +46,7 @@ jobs:
     - name: Deploy to Cloud Run
       run: |
         gcloud config set run/region us-central1
-        gcloud run deploy frontend-service \
+        gcloud run deploy frontend \
           --image gonzagomezp1/frontend:latest \
           --platform managed \
           --quiet
