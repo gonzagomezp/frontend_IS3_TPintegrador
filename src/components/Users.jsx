@@ -25,6 +25,7 @@ const Users = () => {
 
     return (
         <div>
+            <p>HOLA MUNDO</p>
             <h1>Users</h1>
             <ul>{users && users.length > 0 && (
                 <>

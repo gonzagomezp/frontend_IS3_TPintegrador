@@ -32,7 +32,6 @@ jobs:
     - name: Logout from Docker Hub
       run: docker logout
 
-
     - name: Authenticate to Google Cloud
       uses: google-github-actions/auth@v1
       with:
@@ -43,7 +42,7 @@ jobs:
       with:
         project_id: frontend-430223
 
-    - name: Deploy to Cloud Run
+    - name: Deploy to Google Cloud Run
       run: |
         gcloud config set run/region us-central1
         gcloud run deploy frontend \
