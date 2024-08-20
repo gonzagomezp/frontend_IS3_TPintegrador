@@ -29,7 +29,7 @@ jobs:
 
     - name: Get Docker image digest
       id: get_digest
-      run: echo "DIGEST=$(docker inspect --format='{{index .RepoDigests 0}}' gonzagomezp1/backend:latest)" >> $GITHUB_ENV
+      run: echo "DIGEST=$(docker inspect --format='{{index .RepoDigests 0}}' gonzagomezp1/frontend:latest)" >> $GITHUB_ENV
 
     - name: Logout from Docker Hub
       run: docker logout
