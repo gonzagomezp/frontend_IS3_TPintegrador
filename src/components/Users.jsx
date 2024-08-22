@@ -6,11 +6,6 @@ export default function Users() {
     const [users, setUsers] = useState([]);
     const [isLoading, setIsLoading] = useState(false);
 
-
-    useEffect(() => {
-        fetchUsers();
-    }, []);
-
     const fetchUsers = async () => {
         setIsLoading(true);
         const url = "https://backend-lxkjskx52a-uc.a.run.app/users";
@@ -24,6 +19,10 @@ export default function Users() {
         setIsLoading(false)
     };
 
+    const reload = () => {
+        fetchUsers();
+    }
+
     return (
         <div className="mt-10 grid justify-center">
 
@@ -31,27 +30,33 @@ export default function Users() {
 
             <div className="bg-gray-950 px-6 pb-6 pt-4 shadow-2xl shadow-gray-700 rounded-xl">
                 {isLoading ? <Loader /> :
-                    <table>
-                        <thead>
-                            <tr className="border-b-2 h-10 border-gray-400">
-                                <th className="w-[190px]">ID</th>
-                                <th className="w-[190px]">Username</th>
-                            </tr>
-                        </thead>
-                        <tbody>
-                            {users.map((user, index) => (
-                                <tr
-                                    key={user.id}
-                                    className={`text-center h-10 hover:bg-gray-900 ${index !== users.length - 1 ? 'border-b border-gray-800' : 'rounded-b-xl'}`}
-                                >
-                                    <td className="w-[190px]">{user.id}</td>
-                                    <td className="w-[190px]">{user.username}</td>
-                                </tr>
-                            ))}
-                        </tbody>
-                    </table>}
+                    <>
+                        {users.length > 0 ? <table>
+                                <thead>
+                                    <tr className="border-b-2 h-10 border-gray-400">
+                                        <th className="w-[190px]">ID</th>
+                                        <th className="w-[190px]">Username</th>
+                                    </tr>
+                                </thead>
+                                <tbody>
+                                    {users.map((user, index) => (
+                                        <tr
+                                            key={user.id}
+                                            className={`text-center h-10 hover:bg-gray-900 ${index !== users.length - 1 ? 'border-b border-gray-800' : 'rounded-b-xl'}`}
+                                        >
+                                            <td className="w-[190px]">{user.id}</td>
+                                            <td className="w-[190px]">{user.username}</td>
+                                        </tr>
+                                    ))}
+                                </tbody>
+                            </table> : <p className="text-center">No users found</p>
+                            }
+                    </>}
             </div>
-            <button className=""><i class="bi bi-arrow-clockwise"></i></button> 
+            <div className="flex justify-center">
+
+                <button className="mt-4 bg-gray-950 px-3 py-2 rounded-xl" onClick={reload}><i class="bi bi-arrow-clockwise text-3xl"></i></button>
+            </div>
         </div>
     );
 }

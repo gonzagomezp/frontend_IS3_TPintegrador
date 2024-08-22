@@ -20,7 +20,7 @@ const Base = () => {
         return <Info />;
       case "Users":
         return <Users />;
-      case "NewUser":
+      case "Add User":
         return <NewUser />;
       default:
         return <Info />;
@@ -28,7 +28,7 @@ const Base = () => {
   };
 
   return (
-    <main className="bg-gray-900 pt-4">
+    <main className="bg-gray-900 pt-10">
       <div className="flex justify-center">
         <div className="flex gap-3 justify-center px-4 w-fit py-3 rounded-xl bg-gray-950">
           {views.map((view) => (
