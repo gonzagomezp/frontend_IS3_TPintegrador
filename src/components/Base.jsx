@@ -11,7 +11,7 @@ const Base = () => {
   const views = [
     "Info",
     "Users",
-    "NewUser"
+    "Add User"
   ];
 
   const renderView = (name) => {
@@ -32,7 +32,7 @@ const Base = () => {
       <div className="flex justify-center">
         <div className="flex gap-3 justify-center px-4 w-fit py-3 rounded-xl bg-gray-950">
           {views.map((view) => (
-            <button className={`rounded-lg w-24 h-10 hover:bg-blue-500 ${currentView === view ? 'bg-blue-500' : ''}`} onClick={() => setCurrentView(view)}>
+            <button className={`rounded-lg w-[100px] h-10 hover:bg-blue-900 ${currentView === view ? 'bg-blue-900' : ''}`} onClick={() => setCurrentView(view)}>
               {view}
             </button>
           ))}
