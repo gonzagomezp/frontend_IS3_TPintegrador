@@ -3,10 +3,30 @@
 import Users from "./Users";
 import Info from "./Info";
 import NewUser from "./NewUser";
-import { useState } from "react";
+import { useState, useEffect } from "react";
+import axios from "axios";
 
 const Base = () => {
   const [currentView, setCurrentView] = useState("Info");
+  const [users, setUsers] = useState([]);
+  const [isLoading, setIsLoading] = useState(false);
+
+  const fetchUsers = async () => {
+    setIsLoading(true);
+    const url = "https://backend-lxkjskx52a-uc.a.run.app/users";
+    try {
+      const response = await axios.get(url);
+      console.log(response.data)
+      setUsers(response.data);
+    } catch (error) {
+      console.error("Error fetching users:", error);
+    }
+    setIsLoading(false);
+  };
+
+  useEffect(() => {
+    fetchUsers();
+  }, []); //
 
   const views = [
     "Info",
@@ -19,7 +39,7 @@ const Base = () => {
       case "Info":
         return <Info />;
       case "Users":
-        return <Users />;
+        return <Users users={users} isLoading={isLoading} reload={fetchUsers} />;
       case "Add User":
         return <NewUser />;
       default:
@@ -32,11 +52,16 @@ const Base = () => {
       <div className="flex justify-center">
         <div className="flex gap-3 justify-center px-4 w-fit py-3 rounded-xl bg-gray-950">
           {views.map((view) => (
-            <button className={`rounded-lg w-[100px] h-10 hover:bg-blue-900 ${currentView === view ? 'bg-blue-900' : ''}`} onClick={() => setCurrentView(view)}>
+            <button
+              key={view}
+              className={`rounded-lg w-[100px] h-10 hover:bg-blue-900 ${currentView === view ? 'bg-blue-900' : ''}`}
+              onClick={() => setCurrentView(view)}
+            >
               {view}
             </button>
           ))}
-        </div></div>
+        </div>
+      </div>
       {renderView(currentView)}
     </main>
   );
