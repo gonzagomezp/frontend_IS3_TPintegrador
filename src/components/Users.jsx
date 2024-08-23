@@ -13,8 +13,8 @@ export default function Users({ users, isLoading, reload }) {
               <table>
                 <thead>
                   <tr className="border-b-2 h-10 border-gray-400">
-                    <th className="w-[190px]">ID</th>
-                    <th className="w-[190px]">Username</th>
+                    <th className="w-[145px] md:w-[190px]">ID</th>
+                    <th className="w-[145px] md:w-[190px]">Username</th>
                   </tr>
                 </thead>
                 <tbody>
@@ -23,8 +23,8 @@ export default function Users({ users, isLoading, reload }) {
                       key={user.id}
                       className={`text-center h-10 hover:bg-gray-900 ${index !== users.length - 1 ? 'border-b border-gray-800' : 'rounded-b-xl'}`}
                     >
-                      <td className="w-[190px]">{user.id}</td>
-                      <td className="w-[190px]">{user.username}</td>
+                      <td className="w-[145px] md:w-[190px]">{user.id}</td>
+                      <td className="w-[145px] md:w-[190px]">{user.username}</td>
                     </tr>
                   ))}
                 </tbody>

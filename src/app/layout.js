@@ -1,8 +1,11 @@
-import { Inter } from "next/font/google";
+import { Inter, Roboto, Open_Sans } from "next/font/google";
 import "./globals.css";
-import { Toaster } from "sonner"; // Importa el Toaster
+import { Toaster } from "sonner";
 
-const inter = Inter({ subsets: ["latin"] });
+// Configura las fuentes con los pesos deseados
+const inter = Inter({ subsets: ["latin"], weight: "400" }); // Puedes elegir el peso de Inter si es necesario
+const roboto = Roboto({ subsets: ["latin"], weight: ["400", "700"] }); // Especifica los pesos necesarios
+const openSans = Open_Sans({ subsets: ["latin"], weight: ["400", "600"] }); // Especifica los pesos necesarios
 
 export const metadata = {
   title: "Create Next App",
@@ -12,7 +15,7 @@ export const metadata = {
 export default function RootLayout({ children }) {
   return (
     <html lang="en">
-      <body className={inter.className}>
+      <body className={`${inter.className} ${roboto.className} ${openSans.className}`}>
         <Toaster position="bottom-right" theme="dark"/> {/* Añade el Toaster */}
         {children}
       </body>
