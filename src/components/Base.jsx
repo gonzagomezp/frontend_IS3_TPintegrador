@@ -39,7 +39,7 @@ const Base = () => {
       case "Info":
         return <Info />;
       case "Users":
-        return <Users users={users} isLoading={isLoading} reload={fetchUsers} />;
+        return <Users users={users} setUsers={setUsers} isLoading={isLoading} setIsLoading={setIsLoading} reload={fetchUsers} />;
       case "Add User":
         return <NewUser />;
       default:

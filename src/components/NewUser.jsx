@@ -27,6 +27,8 @@ const NewUser = () => {
             console.log(response.data); // Handle the response data as needed
             if (response.data.UserId){ // 
                 toast.info("User created successfully")
+                setUsername('')
+                setPassword('')
             }
         } catch (error) {
             console.error(error); // Handle any errors that occur during the request

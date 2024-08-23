@@ -1,7 +1,29 @@
 import React from "react";
 import Loader from "@/components/ui/Loader";
+import axios from "axios";
+import { toast } from "sonner";
 
-export default function Users({ users, isLoading, reload }) {
+export default function Users({ users, setUsers, isLoading, setIsLoading,  reload }) {
+
+  const deleteUser = (id) => async () => {
+    setIsLoading(true)
+    const url = "https://backend-lxkjskx52a-uc.a.run.app/user/" + id
+    const usersCopy = [...users]
+    try {
+      const response = await axios.delete(url)
+      console.log(response.data)
+      if (response.data) {
+        toast.info("User deleted successfully")
+        setUsers(usersCopy.filter((user) => user.id !== id))
+      }
+
+    } catch (error) {
+      console.error(error)
+      toast.error("An error occurred. Please try again.")
+    }
+    setIsLoading(false)
+  }
+
   return (
     <div className="mt-10 grid justify-center">
       <h1 className="text-3xl font-medium mb-4 text-center">Users</h1>
@@ -12,9 +34,10 @@ export default function Users({ users, isLoading, reload }) {
             {users.length > 0 ? (
               <table>
                 <thead>
-                  <tr className="border-b-2 h-10 border-gray-400">
-                    <th className="w-[145px] md:w-[190px]">ID</th>
-                    <th className="w-[145px] md:w-[190px]">Username</th>
+                  <tr className="border-b-2 h-10 text-center border-gray-400">
+                    <th className="px-4">ID</th>
+                    <th className="px-6">Username</th>
+                    <th className="text-start">Actions</th>
                   </tr>
                 </thead>
                 <tbody>
@@ -23,13 +46,18 @@ export default function Users({ users, isLoading, reload }) {
                       key={user.id}
                       className={`text-center h-10 hover:bg-gray-900 ${index !== users.length - 1 ? 'border-b border-gray-800' : 'rounded-b-xl'}`}
                     >
-                      <td className="w-[145px] md:w-[190px]">{user.id}</td>
-                      <td className="w-[145px] md:w-[190px]">{user.username}</td>
+                      <td className="px-4">{user.id}</td>
+                      <td className="px-6">{user.username}</td>
+                      <td className="">
+                        <button onClick={deleteUser(user.id)} className="px-3 bg-transparent hover:scale-[120%] transform transition-transform">
+                          <i className="bi bi-trash-fill text-lg"></i>
+                        </button>
+                      </td>
                     </tr>
                   ))}
                 </tbody>
               </table>
-            ) : <p className="text-center">No users found</p>}
+            ) : <p className="text-start">No users found</p>}
           </>
         }
       </div>
