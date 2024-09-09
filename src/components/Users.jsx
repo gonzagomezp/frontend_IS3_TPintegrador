@@ -32,7 +32,7 @@ export default function Users({ users, setUsers, isLoading, setIsLoading, reload
         {isLoading ? <Loader /> :
           <>
             {users.length > 0 ? (
-              <table data-testid="users-table">
+              <table id="users-table">
                 <thead>
                   <tr className="border-b-2 h-10 text-center border-gray-400">
                     <th className="px-4">ID</th>
@@ -45,7 +45,7 @@ export default function Users({ users, setUsers, isLoading, setIsLoading, reload
                     <tr
                       key={user.id}
                       className={`text-center h-10 hover:bg-gray-900 ${index !== users.length - 1 ? 'border-b border-gray-800' : 'rounded-b-xl'}`}
-                      data-testid={`user-row-${user.id}`} // Añadir identificador único por usuario
+                      id={`user-row-${user.id}`} // Añadir identificador único por usuario
                     >
                       <td className="px-4">{user.id}</td>
                       <td className="px-6">{user.username}</td>
@@ -53,7 +53,7 @@ export default function Users({ users, setUsers, isLoading, setIsLoading, reload
                         <button
                           onClick={deleteUser(user.id)}
                           className="px-3 bg-transparent hover:scale-[120%] transform transition-transform"
-                          data-testid={`delete-button-${user.id}`} // Añadir identificador al botón de eliminar
+                          id={`delete-button-${user.username}`} // Añadir identificador al botón de eliminar
                         >
                           <i className="bi bi-trash-fill text-lg"></i>
                         </button>
@@ -71,6 +71,7 @@ export default function Users({ users, setUsers, isLoading, setIsLoading, reload
         <button
           className="mt-4 bg-gray-950 px-3 py-2 rounded-xl"
           onClick={reload}
+          id="refresh-button"
           data-testid="refresh-button" // Añadir identificador al botón de refrescar
         >
           <i className="bi bi-arrow-clockwise text-3xl"></i>
