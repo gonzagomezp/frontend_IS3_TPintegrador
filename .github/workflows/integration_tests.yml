@@ -1,0 +1,31 @@
+name: Run Integration Tests
+
+on:
+  workflow_run:
+    workflows: ["Build, Push Docker image and Deploy to GKE"]
+    types:
+      - completed
+
+jobs:
+  integration-tests:
+    runs-on: ubuntu-latest
+
+    steps:
+    - name: Check out the repo
+      uses: actions/checkout@v3
+
+    - name: Wait for deployment to stabilize
+      run: sleep 120 # Espera 2 minuto para que el despliegue se estabilice, ajusta según sea necesario
+
+    - name: Set up Node.js
+      uses: actions/setup-node@v2
+      with:
+        node-version: '19'
+
+    - name: Install dependencies
+      run: npm install
+
+    - name: Run integration tests
+      run: npx codeceptjs run
+      env:
+        BASE_URL: https://frontend-lxkjskx52a-uc.a.run.app/ # Asegúrate de reemplazar esto con la URL de tu aplicación desplegada
