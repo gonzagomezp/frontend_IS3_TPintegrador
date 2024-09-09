@@ -35,7 +35,8 @@ const NewUser = () => {
             if (error?.response?.data?.detail?.includes("Duplicate entry")) {
                 toast.info(`The username '${username}' is already taken!`);
             } else {
-                toast.info("An error occurred. Please try again.");
+                //toast.info("An error occurred. Please try again.");
+                toast.info(error.response.data.detail);
             }
         }
     };
