@@ -15,7 +15,7 @@ exports.config = {
       browser: 'chromium',
       url: 'https://frontend-lxkjskx52a-uc.a.run.app/',
       //url: 'http://localhost:3000',
-      show: true
+      show: false
     }
   },
   include: {
