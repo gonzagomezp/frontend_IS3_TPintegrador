@@ -7,7 +7,7 @@ export default function Users({ users, setUsers, isLoading, setIsLoading, reload
 
   const deleteUser = (id) => async () => {
     setIsLoading(true)
-    const url = "https://backend-lxkjskx52a-uc.a.run.app/user/" + id
+    const url = "https://backend-776943981745.us-central1.run.app//user/" + id
     const usersCopy = [...users]
     try {
       const response = await axios.delete(url)

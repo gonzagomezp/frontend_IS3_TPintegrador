@@ -13,7 +13,7 @@ const Base = () => {
 
   const fetchUsers = async () => {
     setIsLoading(true);
-    const url = "https://backend-lxkjskx52a-uc.a.run.app/users";
+    const url = "https://backend-776943981745.us-central1.run.app//users";
     try {
       const response = await axios.get(url);
       console.log(response.data)

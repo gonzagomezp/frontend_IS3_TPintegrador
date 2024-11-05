@@ -13,7 +13,7 @@ exports.config = {
   helpers: {
     Playwright: {
       browser: 'chromium',
-      url: 'https://frontend-lxkjskx52a-uc.a.run.app/',
+      url: 'https://frontend-776943981745.us-central1.run.app/',
       //url: 'http://localhost:3000',
       //show: true,
       show: false,

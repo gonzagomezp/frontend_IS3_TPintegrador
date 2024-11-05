@@ -22,7 +22,7 @@ const NewUser = () => {
         setError(null)
         setIsLoading(true)
         try {
-            const response = await axios.post('https://backend-lxkjskx52a-uc.a.run.app/user', {
+            const response = await axios.post('https://backend-776943981745.us-central1.run.app//user', {
                 username,
                 password
             });
