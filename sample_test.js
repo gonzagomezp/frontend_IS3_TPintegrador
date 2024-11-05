@@ -5,7 +5,7 @@ Feature("Integration Test");
 Scenario("Create a user, refresh the list, and then delete the user", async ({ I }) => {
 
   //I.amOnPage("http://localhost:3000");
-  I.amOnPage("https://frontend-lxkjskx52a-uc.a.run.app/")
+  I.amOnPage("https://frontend-776943981745.us-central1.run.app/")
   I.see("Trabajo Práctico Integrador");
   I.see("Utilizar una aplicación (desarrollo propio o de un proyecto en github)");
   I.see("Info");

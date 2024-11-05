@@ -31,4 +31,4 @@ jobs:
     - name: Run integration tests
       run: npx codeceptjs run
       env:
-        BASE_URL: https://frontend-lxkjskx52a-uc.a.run.app/
+        BASE_URL: https://frontend-776943981745.us-central1.run.app/
