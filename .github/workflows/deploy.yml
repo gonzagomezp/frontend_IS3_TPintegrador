@@ -42,7 +42,7 @@ jobs:
     - name: Set up Google Cloud SDK
       uses: google-github-actions/setup-gcloud@v1
       with:
-        project_id: frontend-430223
+        project_id: ingenieriadesoftware3
 
     - name: Deploy to Google Cloud Run
       run: |
@@ -52,3 +52,8 @@ jobs:
           --platform managed \
           --region us-central1 \
           --allow-unauthenticated \
+          --cpu 0.5 \
+          --memory 128Mi \
+          --min-instances 0 \
+          --max-instances 5 \
+          --timeout 900
