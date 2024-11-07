@@ -8,7 +8,7 @@ const Info = () => {
       <h1 className=" mt-10 flex justify-center text-2xl md:text-3xl font-medium">Trabajo Práctico Integrador</h1>
       <div className="flex justify-center  ">
 
-        <div className="max-w-[1200px] w-full mx-4 bg-gray-950 p-4 md:p-10 mt-10 rounded-lg">
+        <div className="max-w-[1200px] w-full mx-4 bg-neutral-950 p-4 md:p-10 mt-10 rounded-lg">
           <h2 className="text-xl ml-2 md:ml-10">1- Lo que debe contemplar el proyecto integrador</h2>
           <ul className="grid grid-cols-1 gap-2 ml-6 mr-2 md:!mx-20 md:mt-2">
             <div></div>

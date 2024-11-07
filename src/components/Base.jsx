@@ -48,13 +48,13 @@ const Base = () => {
   };
 
   return (
-    <main className="bg-gray-900 pt-10">
+    <main className="bg-neutral-900 pt-10">
       <div className="flex justify-center">
-        <div className="flex gap-3 justify-center px-4 w-fit py-3 rounded-xl bg-gray-950">
+        <div className="flex gap-3 justify-center px-4 w-fit py-3 rounded-xl bg-neutral-950">
           {views.map((view) => (
             <button
               key={view}
-              className={`rounded-lg w-[100px] h-10 hover:bg-blue-900 ${currentView === view ? 'bg-blue-900' : ''}`}
+              className={`transition-all duration-1000 rounded-lg w-[100px] h-10 hover:bg-sky-900 ${currentView === view ? 'bg-sky-900' : ''}`}
               onClick={() => setCurrentView(view)}
             >
               {view}

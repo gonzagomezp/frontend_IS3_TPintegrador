@@ -49,14 +49,14 @@ const NewUser = () => {
         <div className="grid justify-center mt-10">
             <p className="text-3xl mb-5 text-center font-medium">{"Create a user here =)"}</p>
             <div className="mb-5 ">
-                <label className="block text-gray-400">Username</label>
-                <input className="w-full bg-gray-950 h-10 rounded-md px-4 mb-4" type="text" placeholder="Username" value={username} onChange={(e) => setUsername(e.target.value)} />
-                <label className="block text-gray-400">Password</label>
-                <input className="w-full bg-gray-950 h-10 rounded-md px-4" type="password" placeholder="Password" value={password} onChange={(e) => setPassword(e.target.value)} />
+                <label className="block text-neutral-400">Username</label>
+                <input className="w-full bg-neutral-950 h-10 rounded-md px-4 mb-4" type="text" placeholder="Username" value={username} onChange={(e) => setUsername(e.target.value)} />
+                <label className="block text-neutral-400">Password</label>
+                <input className="w-full bg-neutral-950 h-10 rounded-md px-4" type="password" placeholder="Password" value={password} onChange={(e) => setPassword(e.target.value)} />
             </div>
             <div className="flex justify-center">
                 {isLoading ? <Loader /> :
-                    <button className="bg-gray-950 px-3 py-2 rounded-xl hover:scale-[106%] transform transition-transform" onClick={createUser}>Create user</button>
+                    <button className="bg-neutral-950 px-3 py-2 rounded-xl hover:scale-[106%] transform transition-transform" onClick={createUser}>Create user</button>
                 }
             </div>
             {error && (<p className="text-orange-800 text-center mt-2"><i className="bi bi-exclamation-triangle-fill"></i>{"  "}{error}</p>)}

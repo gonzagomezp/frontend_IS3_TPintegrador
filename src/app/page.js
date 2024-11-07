@@ -3,7 +3,7 @@ import Index from "@/components/Base";
 
 export default function Home() {
   return (
-    <main className="bg-gray-900 !h-screen">
+    <main className="bg-neutral-900 !min-h-screen">
       <Index/>
     </main>
   );
